@@ -1,5 +1,4 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import { followingListReduser } from './followingList/followingListSlice';
 import { usersReducer } from './users/usersSlice';
 import storage from 'redux-persist/lib/storage';
 import {
@@ -13,11 +12,6 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-const persistConfig = {
-  key: 'auth',
-  storage,
-};
-
 const middleware = [
   ...getDefaultMiddleware({
     serializableCheck: {
@@ -26,10 +20,16 @@ const middleware = [
   }),
 ];
 
-const persistedReducer = persistReducer(persistConfig, followingListReduser);
+const persistConfig = {
+  key: 'followingList',
+  storage,
+  whitelist: ['followingList'],
+};
+
+const persistedReducer = persistReducer(persistConfig, usersReducer);
 
 export const store = configureStore({
-  reducer: { users: usersReducer, followingList: persistedReducer },
+  reducer: { users: persistedReducer },
   middleware,
 });
 

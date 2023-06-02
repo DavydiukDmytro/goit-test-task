@@ -1,10 +1,10 @@
 import { SharedLayout } from 'components/SharedLayout';
+import NotFoundPage from 'page/NotFoundPage';
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 const HomePage = lazy(() => import('page/HomePage'));
 const TweetsPage = lazy(() => import('page/TweetsPage'));
-const NotFoundPage = lazy(() => import('page/NotFoundPage'));
 
 export const App = () => {
   return (

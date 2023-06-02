@@ -17,9 +17,11 @@ export const getUsersTunk = createAsyncThunk(
 
 export const updateUserTunk = createAsyncThunk(
   'users/updateUser',
-  async (user, thunkAPI) => {
+  async (user, a, thunkAPI) => {
     try {
-      const response = await axios.put(`/users/${user.id}`, { ...user });
+      const response = await axios.put(`/users/${user.id}`, {
+        followers: user.followers,
+      });
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserTunk } from 'srore/users/operatonsUsers';
@@ -84,4 +85,14 @@ export const UserCard = ({ user }) => {
       )}
     </Container>
   );
+};
+
+UserCard.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
+    tweets: PropTypes.number.isRequired,
+    followers: PropTypes.number.isRequired,
+    following: PropTypes.bool.isRequired,
+  }).isRequired,
 };

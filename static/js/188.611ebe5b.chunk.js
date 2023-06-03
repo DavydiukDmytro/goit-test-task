@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgoit_test_task=self.webpackChunkgoit_test_task||[]).push([[188],{6188:function(e,t,s){s.r(t),s.d(t,{default:function(){return a}});var c=s(3576);s(2791);var n=s.p+"static/media/logoHome.01bc9c82b59d8f563662753798d90b88.svg",r=s(184),a=function(){return(0,r.jsxs)(c.W2,{children:[(0,r.jsx)(c.ny,{src:n,className:"img"}),(0,r.jsx)(c.Dx,{children:"Welcome to the follower finder app"})]})}}}]);
+//# sourceMappingURL=188.611ebe5b.chunk.js.map

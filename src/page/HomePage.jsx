@@ -1,8 +1,12 @@
+import { Container, Svg, Title } from './HomePage.styled';
+import logo from 'images/logoHome.svg';
+
 const HomePage = () => {
   return (
-    <>
-      <h1>HomePage</h1>
-    </>
+    <Container>
+      <Svg src={logo} className="img" />
+      <Title>Welcome to the follower finder app</Title>
+    </Container>
   );
 };
 

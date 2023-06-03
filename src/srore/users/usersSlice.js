@@ -7,6 +7,7 @@ const initialState = {
   followingList: [],
   isLoading: false,
   error: null,
+  errorUpdate: null,
   page: 1,
   filter: TYPE_FILTER.all,
 };
@@ -20,9 +21,15 @@ const usersSlice = createSlice({
         state.users = payload;
         state.page = 1;
         state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getUsersTunk.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.isLoading = false;
       })
       .addCase(getUsersTunk.pending, state => {
         state.isLoading = true;
+        state.error = null;
       })
       .addCase(updateUserTunk.fulfilled, (state, { payload }) => {
         const index = state.followingList.indexOf(payload.id);
@@ -32,8 +39,14 @@ const usersSlice = createSlice({
         state.users = state.users.map(user =>
           user.id !== payload.id ? user : payload
         );
+        state.errorUpdate = null;
       })
-      .addCase(updateUserTunk.pending, state => {});
+      .addCase(updateUserTunk.rejected, (state, { payload }) => {
+        state.errorUpdate = payload;
+      })
+      .addCase(updateUserTunk.pending, (state, { payload }) => {
+        state.errorUpdate = null;
+      });
   },
   reducers: {
     incrementPageNumber(state) {

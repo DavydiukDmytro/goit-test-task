@@ -1,6 +1,10 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { CARDS_PER_PAGES, TYPE_FILTER } from 'utils/constants';
 
+export const selectError = state => state.users.error;
+
+export const selectErrorUpdate = state => state.users.errorUpdate;
+
 export const selectFolloweringList = state => state.users.followingList;
 
 export const selectUser = state => state.users.users;

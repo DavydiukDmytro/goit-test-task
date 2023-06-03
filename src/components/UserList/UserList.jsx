@@ -1,15 +1,16 @@
 import { UserCard } from 'components/UserCard';
 import { useSelector } from 'react-redux';
 import { selectUserPagination } from 'srore/selectors';
+import { CardsList } from './UserList.styled';
 
 export const UserList = () => {
   const users = useSelector(selectUserPagination);
 
   return (
-    <ul>
+    <CardsList>
       {users.map(user => (
         <UserCard key={user.id} user={user} />
       ))}
-    </ul>
+    </CardsList>
   );
 };

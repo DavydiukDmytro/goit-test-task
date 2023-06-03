@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Container, Title } from './HomePage.styled';
+import { DecorationSpan } from './NotFoundPage.styled';
 
 const NotFoundPage = () => {
   const [count, setCount] = useState(10);
@@ -18,7 +20,15 @@ const NotFoundPage = () => {
     };
   }, [count, navigate]);
 
-  return <h1>NotFoundPage</h1>;
+  return (
+    <Container>
+      <Title>
+        You went to a non-existent page, after{' '}
+        <DecorationSpan>{count}</DecorationSpan> seconds you will be redirected
+        to the main page of the application
+      </Title>
+    </Container>
+  );
 };
 
 export default NotFoundPage;

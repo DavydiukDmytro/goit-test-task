@@ -32,8 +32,9 @@ const TweetsPage = () => {
 
       <Title>Tweets</Title>
 
-      {isLoading && <Loader />}
-      {error ? (
+      {isLoading ? (
+        <Loader />
+      ) : error ? (
         <Container className="error">
           <ErrorTitle>Oops, something went wrong, try again later</ErrorTitle>
           <Error>{error}</Error>

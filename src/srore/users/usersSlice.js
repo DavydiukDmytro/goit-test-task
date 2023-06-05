@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { TYPE_FILTER } from 'utils/constants';
+import { getFulfilled, getPending, getRejected } from './handleGetUsers';
+import {
+  updateFulfilled,
+  updatePending,
+  updateRejected,
+} from './handleUpdateUsers';
 import { getUsersTunk, updateUserTunk } from './operatonsUsers';
 
 const initialState = {
@@ -17,36 +23,12 @@ const usersSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(getUsersTunk.fulfilled, (state, { payload }) => {
-        state.users = payload;
-        state.page = 1;
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(getUsersTunk.rejected, (state, { payload }) => {
-        state.error = payload;
-        state.isLoading = false;
-      })
-      .addCase(getUsersTunk.pending, state => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(updateUserTunk.fulfilled, (state, { payload }) => {
-        const index = state.followingList.indexOf(payload.id);
-        index === -1
-          ? state.followingList.push(payload.id)
-          : state.followingList.splice(index, 1);
-        state.users = state.users.map(user =>
-          user.id !== payload.id ? user : payload
-        );
-        state.errorUpdate = null;
-      })
-      .addCase(updateUserTunk.rejected, (state, { payload }) => {
-        state.errorUpdate = payload;
-      })
-      .addCase(updateUserTunk.pending, (state, { payload }) => {
-        state.errorUpdate = null;
-      });
+      .addCase(getUsersTunk.fulfilled, getFulfilled)
+      .addCase(getUsersTunk.rejected, getRejected)
+      .addCase(getUsersTunk.pending, getPending)
+      .addCase(updateUserTunk.fulfilled, updateFulfilled)
+      .addCase(updateUserTunk.rejected, updateRejected)
+      .addCase(updateUserTunk.pending, updatePending);
   },
   reducers: {
     incrementPageNumber(state) {
